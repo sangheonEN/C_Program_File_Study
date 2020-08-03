@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+//¤·¤·
 int N = 0;
 int count = 0;
 int list = 0;

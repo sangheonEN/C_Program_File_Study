@@ -47,7 +47,7 @@ void Taste_Score_accumulate_Calcul(int N, int index, int sour_sum, int bitter_su
 	}
 
 	Taste_Score_accumulate_Calcul(N, index + 1, sour_sum * arrS[index], bitter_sum + arrB[index]);                // 각 맛의 1부터 N개까지 순차적으로 누적된 차이 계산을 재귀적으로 불러옴
-	Taste_Score_accumulate_Calcul(N, index + 1, sour_sum, bitter_sum);                                            // 순차적으로 누적된 차이를 계산할때 각 부모 index의 신맛, 쓴맛을 기준으로 인덱스 증가시키면서 상위에 있는 재료까지 비교되게함
+	Taste_Score_accumulate_Calcul(N, index + 1, sour_sum, bitter_sum);                                            // 순차적으로 누적된 차이를 계산할때 각 인덱스의 개별 맛의 차이 및 인덱스 증가시키면서 상위에 있는 재료까지 비교되게함
 
 
 	/* 각 맛의 총합 구해지는지 Debug

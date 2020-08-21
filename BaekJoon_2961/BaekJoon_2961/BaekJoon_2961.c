@@ -11,7 +11,8 @@ int Min = 0; // 최고의 맛!
 int arrS[10] = { 0, }; //신맛 재료
 int arrB[10] = { 0, };//쓴맛 재료
 
-void Taste_Score_Calcul(int N, int index, int sour_sum, int bitter_sum);
+void Taste_Score_accumulate_Calcul(int N, int index, int sour_sum, int bitter_sum);
+void Taste_Score_individual_Calcul(int N, int index, int sour_sum, int bitter_sum);  
 
 int main(void)
 {
@@ -34,24 +35,25 @@ int main(void)
 		Min = arrB[0] - arrS[0];
 	}
 
-	Taste_Score_Calcul(N, 0, 1, 0);          // 초기조건으로 sour_sum에 1을 해줘야 곱했을때 0이 안됨
+	Taste_Score_accumulate_Calcul(N, 0, 1, 0);          // 초기조건으로 sour_sum에 1을 해줘야 곱했을때 0이 안됨
+	Taste_Score_individual_Calcul(N, 0, 0, 0);          // 개별로 검사하니까 0이어도 됨
 
 	printf("%d", Min);
 	
 	return 0;
 }
 
-void Taste_Score_Calcul(int N, int index, int sour_sum, int bitter_sum)
+void Taste_Score_accumulate_Calcul(int N, int index, int sour_sum, int bitter_sum)
 {
 	if (index > N)
 	{
 		return;
 	}
 
-	Taste_Score_Calcul(N, index + 1, sour_sum * arrS[index], bitter_sum + arrB[index]);
-	//Taste_Score_Calcul(N, index + 1, sour_sum, bitter_sum);
-
-	//printf("%d %d\n", sour_sum, bitter_sum);   각 맛의 총합 구해지는지 Debug
+	Taste_Score_accumulate_Calcul(N, index + 1, sour_sum * arrS[index], bitter_sum + arrB[index]);
+	
+	/* 각 맛의 총합 구해지는지 Debug
+	//printf("%d %d\n", sour_sum, bitter_sum);   
 	//if (sour_sum > bitter_sum && sour_sum - bitter_sum < Min)
 	//{
 	//	Min = sour_sum - bitter_sum;
@@ -60,6 +62,7 @@ void Taste_Score_Calcul(int N, int index, int sour_sum, int bitter_sum)
 	//{
 	//	Min = bitter_sum - sour_sum;
 	//}
+	*/
 
 	if (sour_sum == 1 && bitter_sum == 0)
 	{
@@ -68,7 +71,7 @@ void Taste_Score_Calcul(int N, int index, int sour_sum, int bitter_sum)
 
 	if (sour_sum > bitter_sum)                           // 외부 조건문 : 절대값 잡아주기
 	{
-		if (sour_sum - bitter_sum < Min)                 // 내부 조건문 : 재귀하면서 각각 맛 점수에 접근하면 Min값이 변하는데 그 전에 Min 값보다 작을때 Min에 새롭게 저장
+		if (sour_sum - bitter_sum < Min)                 // 내부 조건문 : 재귀하면서 각각 맛 점수에 접근하면 Min값이 변하는데 앞 전 계산된 Min 값보다 작을때 Min에 새롭게 저장
 		{
 			Min = sour_sum - bitter_sum;
 		}
@@ -80,6 +83,42 @@ void Taste_Score_Calcul(int N, int index, int sour_sum, int bitter_sum)
 			Min = bitter_sum - sour_sum;
 		}
 	}
+}
 
+void Taste_Score_individual_Calcul(int N, int index, int sour, int bitter)
+{
 
+	if (index > N)
+	{
+		return;
+	}
+
+	Taste_Score_individual_Calcul(N, index + 1, arrS[index], arrB[index]);                  // 각 재료 1개마다  
+
+	if (sour == 1 && bitter == 0)
+	{
+		return;
+	}
+
+	if (sour > bitter)                           // 외부 조건문 : 절대값 잡아주기
+	{
+		if (sour - bitter < Min)                 // 내부 조건문 : 재귀하면서 각각 맛 점수에 접근하면 Min값이 변하는데 앞 전 계산된 Min 값보다 작을때 Min에 새롭게 저장
+		{
+			Min = sour - bitter;
+		}
+	}
+	else if (bitter > sour)
+	{
+		if (bitter - sour < Min)
+		{
+			Min = bitter - sour;
+		}
+	}
+	else
+	{
+		if (bitter - sour < Min)
+		{
+			Min = bitter - sour;
+		}
+	}
 }

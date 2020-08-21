@@ -12,7 +12,7 @@ int arrS[10] = { 0, }; //½Å¸À Àç·á
 int arrB[10] = { 0, };//¾´¸À Àç·á
 
 void Taste_Score_accumulate_Calcul(int N, int index, int sour_sum, int bitter_sum);
-void Taste_Score_individual_Calcul(int N, int index, int sour, int bitter);  
+//void Taste_Score_individual_Calcul(int N, int index, int sour, int bitter);  
 
 int main(void)
 {

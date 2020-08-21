@@ -26,7 +26,7 @@ void hanoi_move(int N, int start, int middle, int target)
 	{
 		hanoi_move(N - 1, start, target, middle);
 		printf("%d %d\n", start, target);
-		hanoi_move(N - 1, middle, target, start);
+		hanoi_move(N - 1, middle, start, target);
 		//hanoi_move(N - 1, )
 	}
 }

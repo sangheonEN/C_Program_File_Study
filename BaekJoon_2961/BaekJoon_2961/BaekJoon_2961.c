@@ -6,7 +6,9 @@
 
 #include <stdio.h>
 
-void Taste_Score_Calcul(int N);
+int count = 0;
+
+void Taste_Score_Calcul(int N, int cur_size, int* arr_acidity, int index, int* arrS, int* arrB);
 
 int main(void)
 {
@@ -22,13 +24,29 @@ int main(void)
 	{
 		scanf("%d %d", &arrS[i], &arrB[i]);
 	}
-	Taste_Score_Calcul(N);
-	
+
+	Taste_Score_Calcul(N, 0, arr_acidity, 0, arrS, arrB);
+
 	return 0;
 }
 
-void Taste_Score_Calcul(int N)
+void Taste_Score_Calcul(int N, int cur_size, int* arr_acidity, int index, int* arrS, int* arrB)
 {
 
+	if (N == index)
+	{
+		return;
+	}
+	int add = 0;
+	for (int i = 0; i <= index; i++)
+	{
+		add += arrS[i];
+	}
+	arrS[index] = add;
+	printf("%d\n", arrS[index]);
 
+	arrS[index] = 0;
+	//arr_acidity[cur_size] = index;
+
+	Taste_Score_Calcul(N, cur_size + 1, arr_acidity, index + 1, arrS, arrB);
 }

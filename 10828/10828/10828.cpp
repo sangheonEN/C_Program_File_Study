@@ -14,7 +14,7 @@ int top_num = 0;
 void Push();
 void Pop();
 void size();
-void empty();
+int empty(int* top_num);
 void top();
 
 int main(void)

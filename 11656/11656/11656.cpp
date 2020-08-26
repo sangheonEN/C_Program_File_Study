@@ -1,19 +1,45 @@
+//11656
+
+#include <iostream>
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
-int main(void)
-{
-	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	int* p = arr;
+char str[1001];
+char newStr[1001][1001];
 
-	printf("%d\n", * p);
-	printf("%d\n", p[5]);
+vector<string> v;
 
+bool compare(string a, string b) {
+    if (a.at(0) > b.at(0)) {
+        return 0;
+    }
+    else {
+        return 1;
+    }
+}
 
-	for (int i = 0; i < sizeof(arr)/ sizeof(int); i++)
-	{
-		p = arr + i;
-		printf("%d\n", *p);
-	}
-	return 0;
+int main(void) {
+
+    scanf("%s", str);
+    char* pStr;
+
+    for (int i = 0; i < strlen(str); i++) {
+        pStr = str + i;
+        v.push_back(pStr);
+    }
+
+    for (int i = 0; i < v.size(); i++) {
+        cout << v.at(i) << "\n";
+    }
+
+    sort(v.begin(), v.end(), compare);
+
+    for (int i = 0; i < v.size(); i++) {
+        cout << v.at(i) << "\n";
+    }
+
+    return 0;
 }

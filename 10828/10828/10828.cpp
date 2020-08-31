@@ -8,19 +8,30 @@
 
 int N = 0; // 명령 수
 int stack[10000] = { 0, };
-int top_num = 0;
+int top_num = -1;                // top_num 초기 값 stack에 아무 값이 없기 때문에 -1부터 시작
 
-
-void Push();
-void Pop();
+void Push(int x);
+int Pop();
 void size();
 int empty(int* top_num);
-void top();
+int top();
+
+void command(char arr_str[], int x);
 
 int main(void)
 {
-	scanf("%d", &N);
+	//입력받는 방법 찾기
+	int x = 0;
+	char str[10] = { 0, };
+
 	stackinit(&top_num);
+
+	scanf("%d", &N);
+
+	command(str, x);
+
+	Push(x);
+
 }
 
 void stackinit(int* top_num)
@@ -28,19 +39,44 @@ void stackinit(int* top_num)
 	*top_num = -1;
 }
 
-void Push()
+void Push(int x)
 {
+	stack[++top_num] = x;
+}
+
+void command(char arr_str[], int x)
+{
+	if (arr_str == "push")
+	{
+		Push(x);
+	}
+	else if (arr_str == "pop")
+	{
+		Pop();
+	}
 
 }
 
-void Pop()
+int Pop()
 {
-
+	int* ptr = NULL;
+	ptr = stack;
+	if (empty(&top_num) == 1)
+	{
+		return -1;
+	}
+	else
+	{
+		printf("%d", ptr[top_num--]);
+		return 0;
+	}
 }
 
 void size()
 {
-
+	int* ptr = NULL;
+	ptr = stack;
+	printf("%d\n", sizeof(stack));
 }
 
 int empty(int* top_num)
@@ -55,6 +91,18 @@ int empty(int* top_num)
 	}
 }
 
-void top() {
+int top() 
+{
+	int* ptr = NULL;
+	ptr = stack;
+	if (empty(&top_num) == 1)
+	{
+		return -1;
+	}
+	else
+	{
+		printf("%d\n", ptr[top_num]);
+		return 0;
+	}
 
 }

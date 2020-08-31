@@ -1,30 +1,28 @@
 #include<stdio.h>
+#include<string>
 #include<string.h>
 #include<iostream>
 #include <cstdio>
-
 using namespace std;
 
 int list_result[4] = { 0, };
 
-char list[100] = { 0, };
+char list[101] = { 0, };
 char* pch = NULL;
 void calcul(int len);
 
 int main(void)
 {
-	//cin.getline(list,strlen(list));
-	scanf("%[^\n]", list);
-	int len = strlen(list);
-
-	calcul(len);
-
-	//cout << list_result[0] << ' ' << list_result[1] << ' ' << list_result[2] << ' ' << list_result[3] << endl;
-	//cout << endl;
-	
-	for (int i = 0; i < 4; i++)
+	while (fgets(list,sizeof(list)/sizeof(char),stdin) != NULL)         // 
 	{
-		printf("%d ", list_result[i]);
+		int len = strlen(list);
+
+		calcul(len);
+
+		for (int i = 0; i < 4; i++)
+		{
+			printf("%d ", list_result[i]);
+		}
 	}
 
 	return 0;

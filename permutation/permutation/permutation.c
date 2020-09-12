@@ -26,17 +26,17 @@ void Permutation(int count)
 {
 	if (count == R)                   // 기저조건 count == R이 되는 순간 출력후 RETURN
 	{
-		for (int i = 0; i < R; i++)   // 각 경우의 수 NUMBERS에 저장 후 R만큼 출력
+		for (int i = 0; i < R; i++)     // 각 경우의 수 NUMBERS에 저장 후 R만큼 출력
 		{
 			printf("%d", numbers[i]);
 		}
 		printf("\n");
-		return;                       // 과거로 돌아감
+		return;                         // 그 전 자리수로 return
 	}
 
 	for (int i = 0; i < N; i++)
 	{
-		if (isSelected[i])            // i번째 인덱스에 이미 들어 있으면 
+		if (isSelected[i])              // i번째 인덱스에 이미 들어 있으면 
 		{
 			continue;
 		}

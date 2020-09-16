@@ -23,7 +23,7 @@ queue<pair<int, int>> q;
 void bfs() {
 	int step = 1;
 	int size;
-	while (!q.empty()) {
+	while (!q.empty()) {          // !q.empty() 비어있지 않을때 까지 반복
 		size = q.size();
 
 		for (int i = 0; i < size; i++) {
@@ -37,7 +37,7 @@ void bfs() {
 
 				if (dxx >= 0 && dxx < 10 && dyy >= 0 && dyy < 10 && isVisited[dxx][dyy] != true) {
 					q.push(make_pair(dxx, dyy));
-					if (map[dxx][dyy] == 100) {
+					if (map[dxx][dyy] == 3) {
 						result = step;
 						return;
 					}
@@ -57,10 +57,13 @@ int main() {
 	}
 
 	isVisited[0][0] = true;
-	q.push(make_pair(0, 0));
+	q.push(make_pair(0, 0));         //  변수 0, 0 가 들어간 PAIR만들어줌
 
 	bfs();
 
 	cout << result << endl;
 
 }
+
+
+

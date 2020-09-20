@@ -88,9 +88,6 @@ int main(void)
 
 	// 시작 점 잡기.
 
-
-
-
 	return 0;
 
 }

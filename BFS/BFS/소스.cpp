@@ -42,6 +42,24 @@ void bfs()
 {
 	int size = 0;
 	int step = 1;
+<<<<<<< HEAD
+	int size;
+	while (!q.empty()) {          // !q.empty() 비어있지 않을때 까지 반복
+		size = q.size();
+
+		for (int i = 0; i < size; i++) {
+			int dx = q.front().first;
+			int dy = q.front().second;
+			q.pop();
+
+			for (int d = 0; d < 4; d++) {
+				int dxx = dx + dir[d][0];
+				int dyy = dy + dir[d][1];
+
+				if (dxx >= 0 && dxx < 10 && dyy >= 0 && dyy < 10 && isVisited[dxx][dyy] != true) {
+					q.push(make_pair(dxx, dyy));
+					if (map[dxx][dyy] == 3) {
+=======
 	while (!q.empty()) // 비어있으면 true니까 비어 있지 않을때까지 반복
 	{
 		// ex 0,0 에서 (1, 0), (0, 1) 을 가는데 (1, 0) 에서는 또 (0,0), (1, 1), (2, 0) 을 갈수 있으니까!
@@ -65,6 +83,7 @@ void bfs()
 					inVisited[dxx][dyy] = true;
 					if (map[dxx][dyy] == 3)                 // map에 해당 좌표가 3이라면 그 step만큼 
 					{
+>>>>>>> 6a9ba61124560b2b6e0f0fa6a4390dfbdc307d95
 						result = step;
 						return;
 					}
@@ -74,5 +93,27 @@ void bfs()
 		}
 		step++;
 	}
+<<<<<<< HEAD
+}
+
+int main() {
+
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			cin >> map[i][j];
+		}
+	}
+
+	isVisited[0][0] = true;
+	q.push(make_pair(0, 0));         //  변수 0, 0 가 들어간 PAIR만들어줌
+
+	bfs();
+
+	cout << result << endl;
+=======
+>>>>>>> 6a9ba61124560b2b6e0f0fa6a4390dfbdc307d95
 
 }
+
+
+

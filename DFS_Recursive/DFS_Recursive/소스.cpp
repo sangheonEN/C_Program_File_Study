@@ -48,11 +48,8 @@ void dfs(int dx, int dy)
 			{
 				return;
 			}
-
 		}
 	}
-
-
 }
 
 int main(void)
